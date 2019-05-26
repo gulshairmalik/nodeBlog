@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  if posts
+  each post, i in posts
+    .post
+      a(href='/posts/show/'+post._id)
+        h1=post.title
+      img(src="/images/uploads/"+post.mainimage)
+      p!=truncateText(post.body,400)
+      a.more(href='/posts/show/'+post._id) Read more
+      p.meta Posted in 
+        a(href="/categories/show/"+post.category) #{post.category} by #{post.author} on #{moment(post.date).format("DD-MMM-YYYY")}
+  else
+    p There are no post to display.
